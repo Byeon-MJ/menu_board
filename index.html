@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MJS Bar - 칵테일 메뉴</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">MJS Bar</h1>
+            <p class="tagline">Premium Cocktails & Fine Spirits</p>
+        </div>
+    </header>
+
+    <!-- 메인 이미지 섹션 -->
+    <section class="hero-section">
+        <div class="hero-image-container">
+            <img src="images/mjs_bar.jpg" alt="MJS Bar" class="hero-image">
+        </div>
+    </section>
+
+    <!-- 메뉴 네비게이션 -->
+    <nav class="menu-nav">
+        <div class="nav-container">
+            <button class="nav-btn active" data-category="cocktails">칵테일</button>
+            <button class="nav-btn" data-category="spirits">스피리츠</button>
+            <button class="nav-btn" data-category="wine">와인</button>
+            <button class="nav-btn" data-category="beer">맥주</button>
+        </div>
+    </nav>
+
+    <!-- 메뉴 섹션 -->
+    <main class="menu-container">
+        <!-- 칵테일 메뉴 -->
+        <section id="cocktails" class="menu-section active">
+            <h2 class="section-title">Signature Cocktails</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-image">
+                        <i class="fas fa-glass-martini-alt"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-name">MJS Martini</h3>
+                        <p class="item-description">진, 베르무트, 올리브로 만든 클래식 마티니</p>
+                        <span class="item-price">₩18,000</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-image">
+                        <i class="fas fa-glass-whiskey"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-name">Old Fashioned</h3>
+                        <p class="item-description">버번 위스키, 설탕, 비터스, 오렌지 피일</p>
+                        <span class="item-price">₩16,000</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-image">
+                        <i class="fas fa-glass-martini-alt"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-name">Negroni</h3>
+                        <p class="item-description">진, 캄파리, 스위트 베르무트</p>
+                        <span class="item-price">₩17,000</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-image">
+                        <i class="fas fa-glass-whiskey"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-name">Manhattan</h3>
+                        <p class="item-description">라이 위스키, 스위트 베르무트, 비터스</p>
+                        <span class="item-price">₩16,000</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 스피리츠 메뉴 -->
+        <section id="spirits" class="menu-section">
+            <h2 class="section-title">Premium Spirits</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-image">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-name">Macallan 12</h3>
+                        <p class="item-description">싱글 몰트 스카치 위스키</p>
+                        <span class="item-price">₩25,000</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-image">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-name">Grey Goose</h3>
+                        <p class="item-description">프리미엄 보드카</p>
+                        <span class="item-price">₩20,000</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 와인 메뉴 -->
+        <section id="wine" class="menu-section">
+            <h2 class="section-title">Fine Wines</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-image">
+                        <i class="fas fa-wine-glass"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-name">Château Margaux</h3>
+                        <p class="item-description">보르도 레드 와인</p>
+                        <span class="item-price">₩45,000</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 맥주 메뉴 -->
+        <section id="beer" class="menu-section">
+            <h2 class="section-title">Craft Beers</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-image">
+                        <i class="fas fa-beer"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-name">Craft IPA</h3>
+                        <p class="item-description">로컬 브루어리 IPA</p>
+                        <span class="item-price">₩8,000</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>MJS Bar</h3>
+                <p>서울 금천구 두산로3길 36-11, 드림캐슬3차아파트 501호</p>
+                <p>전화: 010-4488-3560</p>
+                <p>영업시간: 주인장 마음대로</p>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 MJS Bar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
