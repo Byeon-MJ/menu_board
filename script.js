@@ -355,14 +355,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // 로고 클릭 시 페이지 상단으로 스크롤
+    // 로고 클릭 시 페이지 새로고침
     const logo = document.querySelector('.logo');
     if (logo) {
         logo.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.location.reload();
+        });
+    }
+
+    // 푸터 MJS Bar 텍스트 클릭 시 페이지 새로고침
+    const footerTitle = document.querySelector('.footer-info h3');
+    if (footerTitle) {
+        footerTitle.style.cursor = 'pointer';
+        footerTitle.addEventListener('click', function() {
+            window.location.reload();
         });
     }
 
