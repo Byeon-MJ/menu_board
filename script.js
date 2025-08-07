@@ -426,35 +426,80 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 터치 디바이스 지원
+    // 터치 디바이스 지원 (개선된 스와이프 감지)
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+    let touchTarget = null;
 
-    document.addEventListener('touchstart', function(e) {
-        touchStartX = e.changedTouches[0].screenX;
-    });
+    // 메뉴 컨테이너에서만 터치 이벤트 감지
+    const menuArea = document.querySelector('.menu-container');
+    const navArea = document.querySelector('.menu-nav');
 
-    document.addEventListener('touchend', function(e) {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
+    function addTouchListeners(element) {
+        if (!element) return;
+        
+        element.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+            touchTarget = e.target;
+        });
+
+        element.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        });
+    }
+
+    // 메뉴 영역과 네비게이션 영역에만 터치 리스너 추가
+    addTouchListeners(menuArea);
+    addTouchListeners(navArea);
 
     function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
+        // 메뉴가 활성화되어 있지 않으면 스와이프 무시
+        if (!menuContainer.classList.contains('show')) {
+            return;
+        }
+
+        const horizontalDiff = touchStartX - touchEndX;
+        const verticalDiff = Math.abs(touchStartY - touchEndY);
+        const horizontalDistance = Math.abs(horizontalDiff);
         
-        if (Math.abs(diff) > swipeThreshold) {
+        // 개선된 스와이프 감지 조건
+        const swipeThreshold = 100; // 임계값 증가 (50 → 100)
+        const maxVerticalMovement = 150; // 수직 움직임 제한
+        
+        // 수평 스와이프가 수직 스와이프보다 2배 이상 커야 함
+        const isHorizontalSwipe = horizontalDistance > verticalDiff * 2;
+        
+        // 스와이프 조건 확인
+        if (horizontalDistance > swipeThreshold && 
+            verticalDiff < maxVerticalMovement && 
+            isHorizontalSwipe) {
+            
             const activeButton = document.querySelector('.nav-btn.active');
             const currentIndex = Array.from(navButtons).indexOf(activeButton);
             
-            if (diff > 0 && currentIndex < navButtons.length - 1) {
-                // 왼쪽으로 스와이프 - 다음 카테고리
-                navButtons[currentIndex + 1].click();
-            } else if (diff < 0 && currentIndex > 0) {
-                // 오른쪽으로 스와이프 - 이전 카테고리
-                navButtons[currentIndex - 1].click();
+            // 활성화된 메뉴가 있을 때만 스와이프 동작
+            if (activeButton && currentIndex >= 0) {
+                if (horizontalDiff > 0 && currentIndex < navButtons.length - 1) {
+                    // 왼쪽으로 스와이프 - 다음 카테고리
+                    navButtons[currentIndex + 1].click();
+                } else if (horizontalDiff < 0 && currentIndex > 0) {
+                    // 오른쪽으로 스와이프 - 이전 카테고리
+                    navButtons[currentIndex - 1].click();
+                }
             }
         }
+        
+        // 터치 좌표 초기화
+        touchStartX = 0;
+        touchEndX = 0;
+        touchStartY = 0;
+        touchEndY = 0;
+        touchTarget = null;
     }
 
     // 성능 최적화를 위한 디바운스 함수
