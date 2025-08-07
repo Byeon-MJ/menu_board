@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const navButtonsContainer = document.getElementById('navButtons');
     const currentMenuSpan = mobileMenuToggle ? mobileMenuToggle.querySelector('.current-menu') : null;
-    let currentCategory = 'cocktails';
+    let currentCategory = null;
     let loadedCategories = {};
     
     // Debug logging
@@ -93,6 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // 메뉴 카테고리 로드 함수
     async function loadMenuCategory(category) {
         console.log(`Loading category: ${category}`);
+        
+        // 메뉴 컨테이너 표시
+        menuContainer.classList.add('show');
         
         // 이미 로드된 카테고리면 캐시에서 가져오기
         if (loadedCategories[category]) {
@@ -189,8 +192,8 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const targetCategory = this.getAttribute('data-category');
             
-            // 같은 카테고리 클릭시 무시
-            if (currentCategory === targetCategory) {
+            // 같은 카테고리 클릭시 무시 (단, 초기 로드는 예외)
+            if (currentCategory === targetCategory && currentCategory !== null) {
                 // 모바일에서는 드롭다운 닫기
                 if (mobileMenuToggle && navButtonsContainer) {
                     mobileMenuToggle.classList.remove('active');
@@ -224,8 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 초기 메뉴 로드
-    loadMenuCategory('cocktails');
+    // 초기 메뉴 로드 제거 - 메뉴 버튼 클릭시에만 로드
 
     // 상세 페이지 모달 관리
     const detailModal = document.getElementById('detailModal');
