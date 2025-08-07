@@ -44,8 +44,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // 메뉴 네비게이션 기능
     const navButtons = document.querySelectorAll('.nav-btn');
     const menuContainer = document.getElementById('menuContainer');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navButtonsContainer = document.getElementById('navButtons');
+    const currentMenuSpan = mobileMenuToggle ? mobileMenuToggle.querySelector('.current-menu') : null;
     let currentCategory = 'cocktails';
     let loadedCategories = {};
+    
+    // Debug logging
+    console.log('Mobile menu toggle element:', mobileMenuToggle);
+    console.log('Nav buttons container:', navButtonsContainer);
+    console.log('Current menu span:', currentMenuSpan);
+    
+    // 모바일 드롭다운 토글 기능
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            console.log('Mobile menu toggle clicked');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isActive = this.classList.contains('active');
+            console.log('Is active:', isActive);
+            
+            if (isActive) {
+                // 드롭다운 닫기
+                console.log('Closing dropdown');
+                this.classList.remove('active');
+                navButtonsContainer.classList.remove('show');
+            } else {
+                // 드롭다운 열기
+                console.log('Opening dropdown');
+                this.classList.add('active');
+                navButtonsContainer.classList.add('show');
+            }
+        });
+    } else {
+        console.error('Mobile menu toggle not found');
+    }
+    
+    // 드롭다운 외부 클릭시 닫기
+    document.addEventListener('click', function(e) {
+        if (mobileMenuToggle && navButtonsContainer && 
+            !mobileMenuToggle.contains(e.target) && !navButtonsContainer.contains(e.target)) {
+            mobileMenuToggle.classList.remove('active');
+            navButtonsContainer.classList.remove('show');
+        }
+    });
 
     // 메뉴 카테고리 로드 함수
     async function loadMenuCategory(category) {
@@ -147,7 +190,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetCategory = this.getAttribute('data-category');
             
             // 같은 카테고리 클릭시 무시
-            if (currentCategory === targetCategory) return;
+            if (currentCategory === targetCategory) {
+                // 모바일에서는 드롭다운 닫기
+                if (mobileMenuToggle && navButtonsContainer) {
+                    mobileMenuToggle.classList.remove('active');
+                    navButtonsContainer.classList.remove('show');
+                }
+                return;
+            }
             
             // 모든 버튼에서 active 클래스 제거
             navButtons.forEach(btn => btn.classList.remove('active'));
@@ -157,6 +207,17 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 현재 카테고리 업데이트
             currentCategory = targetCategory;
+            
+            // 모바일 드롭다운 텍스트 업데이트
+            if (currentMenuSpan) {
+                currentMenuSpan.textContent = this.textContent;
+            }
+            
+            // 드롭다운 닫기
+            if (mobileMenuToggle && navButtonsContainer) {
+                mobileMenuToggle.classList.remove('active');
+                navButtonsContainer.classList.remove('show');
+            }
             
             // 메뉴 카테고리 로드
             loadMenuCategory(targetCategory);

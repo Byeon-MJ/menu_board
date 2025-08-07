@@ -12,9 +12,15 @@
     <!-- 헤더 섹션 -->
     <header class="header">
         <div class="header-content">
-            <h1 class="logo">MJS Bar</h1>
-            <p class="tagline">Premium Cocktails & Fine Spirits</p>
+            <div class="header-main">
+                <h1 class="logo">MJS Bar</h1>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
         </div>
+        <!-- 태그라인 섹션 -->
+        <p class="tagline">Handmade Cocktails & Fine Spirits</p>
     </header>
 
     <!-- 메인 이미지 섹션 -->
@@ -27,12 +33,18 @@
     <!-- 메뉴 네비게이션 -->
     <nav class="menu-nav">
         <div class="nav-container">
-            <button class="nav-btn active" data-category="cocktails">Cocktails</button>
-            <button class="nav-btn" data-category="spirits">Spirits</button>
-            <button class="nav-btn" data-category="beer">Beer</button>
-            <button class="theme-toggle" id="themeToggle">
-                <i class="fas fa-sun"></i>
+            <!-- 모바일 드롭다운 버튼 -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span class="current-menu">Cocktails</span>
+                <i class="fas fa-chevron-down"></i>
             </button>
+            
+            <!-- 네비게이션 버튼들 -->
+            <div class="nav-buttons" id="navButtons">
+                <button class="nav-btn active" data-category="cocktails">Cocktails</button>
+                <button class="nav-btn" data-category="spirits">Spirits</button>
+                <button class="nav-btn" data-category="beer">Beer</button>
+            </div>
         </div>
     </nav>
 
@@ -50,9 +62,6 @@
         <div class="footer-content">
             <div class="footer-info">
                 <h3>MJS Bar</h3>
-                <p>서울 금천구 두산로3길 36-11, 드림캐슬3차아파트 501호</p>
-                <p>전화: 010-4488-3560</p>
-                <p>영업시간: 주인장 마음대로</p>
             </div>
             <div class="footer-social">
                 <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
