@@ -358,7 +358,6 @@ document.addEventListener('DOMContentLoaded', function() {
             header.style.transform = 'translateY(-20px)';
             
             setTimeout(() => {
-                header.style.transition = 'all 0.8s ease';
                 header.style.opacity = '1';
                 header.style.transform = 'translateY(0)';
             }, 100);
