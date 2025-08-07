@@ -90,12 +90,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // 네비게이션으로 스크롤하는 함수
+    function scrollToNavigation() {
+        const nav = document.querySelector('.menu-nav');
+        if (nav) {
+            nav.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start'
+            });
+        }
+    }
+
     // 메뉴 카테고리 로드 함수
     async function loadMenuCategory(category) {
         console.log(`Loading category: ${category}`);
         
         // 메뉴 컨테이너 표시
         menuContainer.classList.add('show');
+        
+        // 네비게이션으로 자동 스크롤
+        setTimeout(() => {
+            scrollToNavigation();
+        }, 100); // 메뉴 컨테이너 표시 애니메이션 후 스크롤
         
         // 이미 로드된 카테고리면 캐시에서 가져오기
         if (loadedCategories[category]) {
