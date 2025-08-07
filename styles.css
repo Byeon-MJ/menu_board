@@ -63,7 +63,7 @@ body {
 /* 헤더 스타일 */
 .header {
     background: var(--bg-primary);
-    padding: 2rem 0;
+    padding: 2rem 0 1rem;
     text-align: center;
     position: relative;
 }
@@ -275,6 +275,16 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 3rem 2rem;
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.menu-container.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 로딩 메시지 */
@@ -489,21 +499,21 @@ body {
     
     .tagline {
         font-size: 1rem;
-        padding: 0.8rem 0;
+        padding: 0.8rem 0 0;
     }
     
     .hero-section {
-        padding: 1.5rem 0;
+        padding: 1rem 0;
     }
     
     .hero-image-container {
-        width: 270px;
-        height: 270px;
+        width: 350px;
+        height: 350px;
     }
     
     .hero-image {
-        width: 250px;
-        height: 250px;
+        width: 330px;
+        height: 330px;
     }
     
     .nav-container {
