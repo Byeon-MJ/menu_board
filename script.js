@@ -32,12 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateNavBackground() {
         const nav = document.querySelector('.menu-nav');
         const currentTheme = body.getAttribute('data-theme');
-        const scrolled = window.scrollY > 100;
         
+        // 스크롤에 관계없이 일관된 배경 유지
         if (currentTheme === 'light') {
-            nav.style.background = scrolled ? 'rgba(248, 249, 250, 0.95)' : 'rgba(248, 249, 250, 0.9)';
+            nav.style.background = '#ffffff';
         } else {
-            nav.style.background = scrolled ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 0.8)';
+            nav.style.background = '#1a1a1a';
         }
     }
 
